@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TINWORLD-SPORTS</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#000;color:#fff;font-family:Arial,sans-serif;min-height:100vh}
+    .header{padding:20px;text-align:center;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;gap:10px}
+    .header h1{font-size:1.8em;color:gold;text-shadow:0 0 20px gold}
+    .header img{width:80px;height:auto}
+    .player-wrapper{position:relative;width:95%;max-width:950px;margin:20px auto;aspect-ratio:16/9;border:5px solid gold;border-radius:20px;overflow:hidden;box-shadow:0 0 40px rgba(255,215,0,0.6)}
+    #player-iframe{width:100%;height:100%;border:none}
+    #player-video{width:100%;height:100%;display:none;background:#000}
+    #channel-overlay{position:absolute;bottom:15px;left:15px;background:rgba(0,0,0,0.7);padding:8px 16px;border-radius:10px;font-size:14px;display:none;z-index:20;font-weight:bold}
+    #search{display:block;width:90%;max-width:360px;margin:20px auto;padding:14px;font-size:18px;border:3px solid gold;border-radius:40px;background:#111;color:#fff;text-align:center;outline:none}
+    .channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:16px;padding:10px;padding-bottom:140px;max-width:1400px;margin:0 auto}
+    .btn{background:#111;border:3px solid #333;border-radius:20px;padding:12px;text-align:center;transition:all .3s;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.8);position:relative}
+    .btn:hover{border-color:gold;box-shadow:0 0 30px rgba(255,215,0,0.7);transform:scale(1.05)}
+    .btn.active{border-color:gold;box-shadow:0 0 30px rgba(255,215,0,0.7);transform:scale(1.05)}
+    .btn img{width:80px;height:80px;object-fit:contain;border-radius:50%;border:3px solid gold}
+    .btn span{display:block;margin-top:10px;font-size:13px;font-weight:bold;color:#fff;word-wrap:break-word}
+    footer{position:fixed;bottom:0;left:0;width:100%;background:#111;color:gold;text-align:center;padding:12px;font-size:15px;z-index:100;font-weight:bold}
+    @media(max-width:600px){.btn img{width:65px;height:65px}.btn span{font-size:11px}}
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <img src="https://i.postimg.cc/JzX7YGPk/logo12-14-13323.png" alt="Logo">
+  <h1>TINWORLD-SPORTS</h1>
+</div>
+
+<div class="player-wrapper">
+  <iframe id="player-iframe" allowfullscreen></iframe>
+  <video id="player-video" controls></video>
+  <div id="channel-overlay"></div>
+</div>
+
+<input type="text" id="search" placeholder="Buscar canal…">
+
+<div class="channels">
+  
+<button class="btn" onclick="playChannel('https://miztv.top/total/stream-437.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://i.postimg.cc/JzX7YGPk/logo12-14-13323.png"><span>#0 TV (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://miztv.top/total/stream-531.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://i.postimg.cc/mr85QWRz/logo12-14-19410.png"><span>ANTENA 3 TV (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://miztv.top/total/stream-522.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://i.postimg.cc/9fh4GvyB/logo12-14-152852.png"><span>BARÇA TV (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://miztv.top/total/stream-535.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://i.postimg.cc/9fh4GvyB/logo12-14-152852.png"><span>CUATRO TV (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://miztv.top/total/stream-445.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://i.postimg.cc/nVs7ttQ9/DAZN-1-Logo.png"><span>DAZN 1(ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://miztv.top/total/stream-446.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://i.postimg.cc/J44MDjjf/DAZN-2-Logo.png"><span>DAZN 2 (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://miztv.top/total/stream-447.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://i.ibb.co/2vkThM3/dazn3.png"><span>DAZN 3 (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://miztv.top/total/stream-448.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://i.ibb.co/R4LBVWP/dazn4.png"><span>DAZN 4 (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-524.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://i.postimg.cc/fLKzn5dK/Euro1.png"><span>EUROSPORT 1 (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-525.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://i.postimg.cc/50NBM7G9/Euro2.png"><span>EUROSPORT 2 (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-530.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://i.postimg.cc/RCHt5NQy/GolPlay.png"><span>GOL PLAY (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-534.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>LA SEXTA TV (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-436.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>MOVISTAR DEPORTES (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-438.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>MOVISTAR DEPORTES 2 (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-526.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>MOVISTAR DEPORTES 3 (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-527.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>MOVISTAR DEPORTES 4 (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-44.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>MOVISTAR GOLF (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-749.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>MUNDOTORO TV (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-523.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>REAL MADRID TV (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-529.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>TELEDEPORTE TV (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-532.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>TELECINCO TV (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-533.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>TVE-LA 1 (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-536.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>TVE-LA 2 (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-521.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>#VAMOS (ES) *By Tinworld*</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-51.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>DADDY 18</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-52.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>DADDY 19</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://thedaddy.top/stream/stream-53.php?ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true">
+  <img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>DADDY 20</span>
+</button>
+
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=455&ads=0')" referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz/" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 1</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=456&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 2</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=457&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 3</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=458&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 4</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=459&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 5</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=460&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 6</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=461&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 7</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=462&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 8</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=463&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 9</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=464&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 10</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=465&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 11</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=466&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 12</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=467&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 13</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=468&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 14</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=469&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 15</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=470&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 16</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=471&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 17</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=472&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 18</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=473&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 19</span></button>
+<button class="btn" onclick="playChannel('https://ava.karmakurama.com/?id=474&ads=0')" referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/09/25/c3898e20-5b4f-11ee-a599-1d1a4f7c1125_webp_original.webp"><span>KARMAKURAMA 20</span></button>
+
+<button class="btn" onclick="playChannel('https://bolaloca.my/player/2/66')"
+referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2023/07/24/5f346300-29cc-11ee-b2f4-e9de482d866e_webp_original.webp"><span>beIN SPORTS 2</span></button>
+<button class="btn" onclick="playChannel('https://rtvelivestream.rtve.es/rtvesec/tdp/tdp_main_576.m3u8')"
+referer="https://fnjplay.xyz/" origin="https://fnjplay.xyz" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2022/03/23/f7108720-aa94-11ec-9b91-03afdbb2e824_webp_original.png"><span>True Premier Football 6</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=xqY73dWBoZye')"><img src="https://cms.dmpcdn.com/livetv/2022/03/23/f7114a70-aa94-11ec-9b91-03afdbb2e824_webp_original.png"><span>True Premier Football 7</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=r4PaaOpzr0Ow')"><img src="https://cms.dmpcdn.com/livetv/2022/03/23/f868c420-aa94-11ec-9b91-03afdbb2e824_webp_original.png"><span>True Premier Football 8</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=eyEPa8A2WaJN')"><img src="https://cms.dmpcdn.com/livetv/2023/08/02/2f7a5b20-30f6-11ee-8c65-b3a6cba5ed9d_webp_original.webp"><span>beIN SPORTS 4</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=pQNm6nA20a6e')"><img src="https://cms.dmpcdn.com/livetv/2023/08/02/300adb50-30f6-11ee-b3e7-85edd640cc04_webp_original.webp"><span>beIN SPORTS 5</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=eXlvvZ4EA5aY')"><img src="https://cms.dmpcdn.com/livetv/2022/12/22/d9313340-81d9-11ed-a7f9-412bbba270e9_webp_original.png"><span>NFL & NBA TV</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=3wLvyKyryPAD')"><img src="https://cms.dmpcdn.com/livetv/2023/07/24/5fda18e0-29cc-11ee-846b-a1c4e5181c87_webp_original.webp"><span>beIN SPORTS 3</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=g9ONWXWJV5pq')"><img src="https://cms.dmpcdn.com/livetv/2023/07/24/5f3c5240-29cc-11ee-b2f4-e9de482d866e_webp_original.webp"><span>beIN SPORTS 1</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=mXQoNYKda2L9')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/cb907420-b44c-11ee-9687-e7ccd66e1ea3_webp_original.webp"><span>True Film Asia</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=NopZ5gjkGmE')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/cccc0160-b44c-11ee-9f05-591527f02603_webp_original.webp"><span>True Movie Hits</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=GNd67OBJ6pv')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/cffb79f0-b44d-11ee-80bd-b787d7bab688_webp_original.webp"><span>True Thai Film</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=xR0n6ePG7wL')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/ce5c21d0-b44d-11ee-aa7d-afe908f95743_webp_original.webp"><span>True Sports 2</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=PanRBOzKovQ')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/cad78460-b44c-11ee-80bd-b787d7bab688_webp_original.webp"><span>True Film 1</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=OQGBpynd8wOJ')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/ce5c21d0-b44d-11ee-aa7d-afe908f95743_webp_original.webp"><span>True Sports 2 [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=RYDBAwyD4oVJ')"><img src="https://cms.dmpcdn.com/livetv/2017/10/17/1dd95b24-9fb7-474d-bc4d-af3a6df84302.png"><span>KMTV [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=BNXdKMXV0nmN')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/ce9707f0-b44d-11ee-8e80-c3f417d0d932_webp_original.webp"><span>True Sports 3 [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=y6ZnZD9nrJg6')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/cccc0160-b44c-11ee-9f05-591527f02603_webp_original.webp"><span>True Movie Hits [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=Ng2mVAoE33Ej')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/cad78460-b44c-11ee-80bd-b787d7bab688_webp_original.webp"><span>True Film 1 [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=6lnkdYXwd6qQ')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/cf36f170-b44d-11ee-b20d-816339e67c2d_webp_original.webp"><span>True Sports 4 [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=AlPo3NzNZa62')"><img src="https://cms.dmpcdn.com/livetv/2023/05/03/ba4c4510-e966-11ed-896e-69ce273284a6_webp_original.png"><span>True Premier Football 2</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=GdgqaeMewGp4')"><img src="https://cms.dmpcdn.com/livetv/2023/05/03/baf9ea30-e966-11ed-a3d3-f3f98ac7a1a1_webp_original.png"><span>True Premier Football 3</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=zyab4aWZ0OWx')"><img src="https://cms.dmpcdn.com/livetv/2023/05/03/bb0beb90-e966-11ed-993c-b59183950f79_webp_original.png"><span>True Premier Football 4</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=pmXrb1NjLeP0')"><img src="https://cms.dmpcdn.com/livetv/2023/05/03/bbea1690-e966-11ed-935b-df134f58d288_webp_original.png"><span>True Premier Football 5</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=xqY73dWBoZye')"><img src="https://cms.dmpcdn.com/livetv/2023/05/03/ba425a00-e966-11ed-be07-cbff4c6d2c94_webp_original.png"><span>True Premier Football 1</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=38woXPgQ2a68')"><img src="https://cms.dmpcdn.com/livetv/2021/10/01/c028a650-226a-11ec-8746-bdb6cf7b14ca_webp_original.png"><span>Love Nature</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=zmvD0RO72nL')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/cf4a2b50-b44d-11ee-aa7d-afe908f95743_webp_original.webp"><span>True Sports 5</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=YNBAQ9GDBwY')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/c8f38220-b44c-11ee-9f05-591527f02603_webp_original.webp"><span>มิกซ์ เมเจอร์</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=A36nrdXGn3V')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/c8f249a0-b44c-11ee-bbdb-077300b4f5a1_webp_original.webp"><span>True Asian More</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=mVoXV1rk4B5')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/c9f16a20-b44c-11ee-8e80-c3f417d0d932_webp_original.webp"><span>True Explore Sci</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=Ay93Q8zlOeA')"><img src="https://cms.dmpcdn.com/livetv/2023/04/28/456c5d00-e599-11ed-b550-9935ba8025b9_webp_original.png"><span>True Series</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=wQZrKd3mo65')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/cdd42d20-b44d-11ee-9687-e7ccd66e1ea3_webp_original.webp"><span>True Sports 1</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=KEN52vz3o6M')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/ce9707f0-b44d-11ee-8e80-c3f417d0d932_webp_original.webp"><span>True Sports 3</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=Lzz61DA3zYL')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/c97ab380-b44c-11ee-9687-e7ccd66e1ea3_webp_original.webp"><span>True Explore Life</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=3dNmqypz0kpw')"><img src="https://cms.dmpcdn.com/livetv/2023/09/15/35349410-5363-11ee-8322-fb6a8c8f2ff6_webp_original.webp"><span>Motorvision TV [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=gjx2WoxDxkwK')"><img src="https://cms.dmpcdn.com/livetv/2018/12/17/f2c30832-7d77-4a24-88ad-1d30c593bda1.png"><span>Outdoor Channel [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=GDna51EdVk4')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/cf36f170-b44d-11ee-b20d-816339e67c2d_webp_original.webp"><span>True Sports 4</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=P83vkq1M1Lp')"><img src="https://cms.dmpcdn.com/livetv/2024/01/16/cdd2cd90-b44d-11ee-bbdb-077300b4f5a1_webp_original.webp"><span>True Spark Play</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=jbzlQpWG6nj')"><img src="https://cms.dmpcdn.com/livetv/2017/10/18/63cee66a-3db9-47f1-8809-869308f2a152.png"><span>Phoenix InfoNews</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=Aza24mW51D3')"><img src="https://cms.dmpcdn.com/livetv/2018/12/17/f2c30832-7d77-4a24-88ad-1d30c593bda1.png"><span>Outdoor Channel</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=wkOEnAR062w')"><img src="https://cms.dmpcdn.com/livetv/2023/06/01/c25d7dd0-ffd4-11ed-aaf9-a19119bc3367_webp_original.png"><span>TV5MONDE Asie</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=v3b5O94Ml8Yj')"><img src="https://cms.dmpcdn.com/livetv/2023/09/15/35349410-5363-11ee-8322-fb6a8c8f2ff6_webp_original.webp"><span>Motorvision TV [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=1roVB6vKGlwy')"><img src="https://cms.dmpcdn.com/livetv/2023/09/15/35349410-5363-11ee-8322-fb6a8c8f2ff6_webp_original.webp"><span>Motorvision TV [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=PVbJYkZkQwJV')"><img src="https://cms.dmpcdn.com/livetv/2023/05/26/e2540850-fb8a-11ed-b4ef-f5e84d65e5d3_webp_original.png"><span>Lifetime [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=8GoqodXQBK6V')"><img src="https://cms.dmpcdn.com/livetv/2023/05/26/e13eeed0-fb8a-11ed-9087-3197146bda13_webp_original.png"><span>KBS World [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=Z9jpr503gmRk')"><img src="https://cms.dmpcdn.com/livetv/2023/05/26/e13eeed0-fb8a-11ed-9087-3197146bda13_webp_original.png"><span>KBS World [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=OBgZg1wAaM9e')"><img src="https://cms.dmpcdn.com/livetv/2023/05/26/e0b94410-fb8a-11ed-9087-3197146bda13_webp_original.png"><span>History [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=3bOXVPJkEll2')"><img src="https://cms.dmpcdn.com/livetv/2021/10/31/bd3a2340-3a63-11ec-84ef-a5cdc7ce4314_original.png"><span>Food Network [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=9noB8WqBgDxG')"><img src="https://cms.dmpcdn.com/livetv/2018/12/17/a915a6a2-2e64-49e4-8049-6741274ce00e.png"><span>Fashion TV [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=qpkGenAgNOzp')"><img src="https://cms.dmpcdn.com/livetv/2023/05/26/e00a1850-fb8a-11ed-bf86-7b9263bde387_webp_original.png"><span>CNN [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=B9alY9gp0vB')"><img src="https://cms.dmpcdn.com/livetv/2023/07/03/52962a90-195d-11ee-8d1b-f5f88b5481b0_webp_original.webp"><span>CCM</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=vmDMJ9qmJxg')"><img src="https://cms.dmpcdn.com/livetv/2023/05/26/e00a1850-fb8a-11ed-bf86-7b9263bde387_webp_original.png"><span>CNN</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=NPDG7knzdgN')"><img src="https://cms.dmpcdn.com/livetv/2023/05/26/dffb2430-fb8a-11ed-ab37-775f5d36f2f4_webp_original.png"><span>CNBC</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=DpZV0741AWz')"><img src="https://cms.dmpcdn.com/livetv/2018/12/17/a915a6a2-2e64-49e4-8049-6741274ce00e.png"><span>Fashion TV</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=6MkNweRv75d')"><img src="https://cms.dmpcdn.com/livetv/2021/10/31/bd3a2340-3a63-11ec-84ef-a5cdc7ce4314_original.png"><span>Food Network</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=omneMllBYBj')"><img src="https://cms.dmpcdn.com/livetv/2017/10/17/1dd95b24-9fb7-474d-bc4d-af3a6df84302.png"><span>KMTV</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=OX4KG1R3W8O')"><img src="https://cms.dmpcdn.com/livetv/2023/05/26/e0b94410-fb8a-11ed-9087-3197146bda13_webp_original.png"><span>History Channel</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=NOed9VVgV2K')"><img src="https://cms.dmpcdn.com/livetv/2023/05/26/e2540850-fb8a-11ed-b4ef-f5e84d65e5d3_webp_original.png"><span>Lifetime</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=J2LMzNN8k4K')"><img src="https://cms.dmpcdn.com/livetv/2023/05/26/e13eeed0-fb8a-11ed-9087-3197146bda13_webp_original.png"><span>KBS World</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=d3KOa9KBX2p3')"><img src="https://cms.dmpcdn.com/livetv/2023/04/30/19a0be10-e778-11ed-a3d3-f3f98ac7a1a1_webp_original.png"><span>BBC News [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=nYnvZLzK8xXY')"><img src="https://cms.dmpcdn.com/livetv/2023/04/30/19a0be10-e778-11ed-a3d3-f3f98ac7a1a1_webp_original.png"><span>BBC News [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=P7qNlxRXoDpM')"><img src="https://cms.dmpcdn.com/livetv/2023/08/28/a9685480-4593-11ee-9c5d-191fce4ff53e_webp_original.webp"><span>BBC Earth [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=EVqkOexLl5bA')"><img src="https://cms.dmpcdn.com/livetv/2023/05/26/df51c4d0-fb8a-11ed-b4ef-f5e84d65e5d3_webp_original.png"><span>AXN [Forfang]</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=xDYqbGEY4lK')"><img src="https://cms.dmpcdn.com/livetv/2018/12/17/d6f8a170-f4b8-4406-aecc-cc7ad86d9b9a.png"><span>CCTV4</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=eM73Dj2x6pk')"><img src="https://cms.dmpcdn.com/livetv/2019/05/16/0e6eaeb5-2194-49c7-8cda-1bb2deaab230_original.png"><span>ABC Australia</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=L8vp4O701l2')"><img src="https://cms.dmpcdn.com/livetv/2023/08/28/a9685480-4593-11ee-9c5d-191fce4ff53e_webp_original.webp"><span>BBC Earth</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=xkZ7M890k1z')"><img src="https://cms.dmpcdn.com/livetv/2019/01/24/c187dafd-24b4-4a9a-bb35-9ddd0f96f4f9.png"><span>BBC Lifestyle</span></button>
+<button class="btn" onclick="playChannel('https://www.bahfootball.com/tvonline/play.php?id=lQm56Ow0wjl')"><img src="https://cms.dmpcdn.com/livetv/2023/04/30/19a0be10-e778-11ed-a3d3-f3f98ac7a1a1_webp_original.png"><span>BBC News</span></button>
+<button class="btn" onclick="playChannel('https://nickzenu.wvx5wmusclef6li35frame.shop/es/basketball/liga-femenina-de-baloncesto-2063872/zaragoza-women-vs-lacturale-araski-women.html?icg=RVM')"
+referer="https://enz.gdplayertv.to/" origin="https://enz.gdplayertv.to" userAgent="Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148" isHost="true"><img src="https://cms.dmpcdn.com/livetv/2018/12/17/b6918234-6cda-4315-b4f9-b22ac94d87ae.png"><span>CGTN</span></button>
+
+</div>
+
+<footer>editado por Tinworld</footer>
+
+<script>
+function playChannel(url) {
+  const btn = event.currentTarget;
+  const referer = btn.getAttribute('referer') || '';
+  const origin = btn.getAttribute('origin') || '';
+  const isHost = btn.getAttribute('isHost') === 'true';
+  const name = btn.querySelector('span').textContent;
+
+  const iframe = document.getElementById('player-iframe');
+  const video = document.getElementById('player-video');
+  const overlay = document.getElementById('channel-overlay');
+
+  // Limpiar reproductores anteriores
+  video.src = '';
+  
+  // Ocultar ambos reproductores primero
+  iframe.style.display = 'none';
+  video.style.display = 'none';
+  
+  // Detectar tipo de archivo
+  const videoExtensions = ['.m3u8', '.mpd', '.mp4', '.mkv', '.avi', '.mov', '.webm'];
+  const isVideoFile = videoExtensions.some(ext => url.toLowerCase().includes(ext));
+  
+  if (isVideoFile) {
+    // Usar reproductor de video
+    video.style.display = 'block';
+    video.src = url;
+    video.play().catch(e => console.log('Error al reproducir:', e));
+  } else if (isHost) {
+    // Usar iframe con srcdoc
+    iframe.style.display = 'block';
+    iframe.srcdoc = `
+      <!DOCTYPE html><html><head>
+        ${origin ? `<meta http-equiv="Origin" content="${origin}">` : ''}
+        ${referer ? `<meta name="referrer" content="origin">` : ''}
+      </head><body style="margin:0;background:#000">
+        <iframe src="${url}" style="border:none;width:100%;height:100vh" allowfullscreen></iframe>
+      </body></html>
+    `;
+  } else {
+    // Usar iframe directo
+    iframe.style.display = 'block';
+    iframe.src = url;
+  }
+
+  overlay.textContent = 'Estás Viendo: ' + name;
+  overlay.style.display = 'block';
+  setTimeout(() => overlay.style.display = 'none', 20000);
+
+  document.querySelector('.player-wrapper').scrollIntoView({behavior:'smooth', block:'start'});
+
+  // Marcar el botón como activo
+  document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// AUTO-INICIO 100% FUNCIONAL
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    document.querySelector('button[onclick*="miztv"]')?.click();
+  }, 800);
+});
+
+// Buscador
+document.getElementById('search').addEventListener('input', function() {
+  const filter = this.value.toLowerCase();
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.style.display = btn.textContent.toLowerCase().includes(filter) ? '' : 'none';
+  });
+});
+</script>
+
+</body>
+</html>
